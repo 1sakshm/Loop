@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Store, Order, StoreMetrics, HealthScore, Anomaly } from '../types';
 
 // API endpoints
-const BACKEND_API_URL = 'http://localhost:8000';
+const BACKEND_API_URL = process.env.REACT_APP_BACKEND_API_URL;
 const MOCK_API_URL = 'http://localhost:3001';
 
 class ApiService {
@@ -116,7 +116,8 @@ class ApiService {
 
   // Connect to WebSocket for real-time orders
   connectToOrderStream(onMessage: (order: Order) => void): WebSocket {
-    const ws = new WebSocket('ws://localhost:8000/ws/orders');
+    const wsUrl = BACKEND_API_URL.replace(/^http/, 'ws');
+    const ws = new WebSocket(`${wsUrl}/ws/orders`);
     
     ws.onmessage = (event) => {
       try {
