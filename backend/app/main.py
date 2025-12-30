@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 import httpx
 from datetime import datetime
 
-from .models import Store, Order, StoreMetrics, HealthScore
+from app.models import Store, Order, StoreMetrics, HealthScore
 from .services import HealthScoreService, AnomalyDetectionService, MetricsAggregationService
 
 app = FastAPI(title="Restaurant Dashboard API")
