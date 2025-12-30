@@ -18,6 +18,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {
+        "status": "ok",
+        "service": "Restaurant Dashboard API",
+        "message": "Backend is running successfully"
+    }
+
 # Mock API base URL
 MOCK_API_URL = "https://assessment-6xdhr.ondigitalocean.app"
 
